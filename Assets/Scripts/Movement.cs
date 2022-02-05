@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,7 +9,8 @@ public class Movement : MonoBehaviour
 {
     NavMeshAgent navMeshAgent;
 
-    private float deadInputLimit = 0.1f;
+    private float deadInputLimit = 0.5f;
+
 
     private void Awake()
     {
@@ -17,20 +19,29 @@ public class Movement : MonoBehaviour
 
     private void Update()
     {
-        float horizontal = Input.GetAxis("Horizontal");
-        float vertical = Input.GetAxis("Vertical");
-        if (horizontal > deadInputLimit || horizontal < -deadInputLimit || vertical > deadInputLimit || vertical < -deadInputLimit)
+        float horizontal = Input.GetAxisRaw("Horizontal");
+        float vertical = Input.GetAxisRaw("Vertical");
+        if (horizontal != 0 || vertical != 0)
         {
             HandleInput(horizontal, vertical);
         }
+        else
+        {
+            StopMovement();
+        }
+    }
+
+    private void StopMovement()
+    {
+        navMeshAgent.SetDestination(transform.position);
     }
 
     private void HandleInput(float horizontal, float vertical)
     {
         Vector3 currentPos = transform.position;
         Vector3 newPos = currentPos;
-        newPos.x = newPos.x + (horizontal * 10);
-        newPos.z = newPos.z + (vertical * 10);
+        newPos.x = newPos.x + (horizontal);
+        newPos.z = newPos.z + (vertical);
         navMeshAgent.SetDestination(newPos);
     }
 
