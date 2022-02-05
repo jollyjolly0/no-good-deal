@@ -5,11 +5,8 @@ using UnityEngine;
  using DialogueEditor;
 public class DialogInteractable : BaseInteractable
 {
+    [SerializeField]
     private NPCConversation conversation;
-    private void Awake()
-    {
-        conversation = GetComponent<NPCConversation>();
-    }
 
     public override string GetActionName()
     {
