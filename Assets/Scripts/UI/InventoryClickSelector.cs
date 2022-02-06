@@ -15,7 +15,7 @@ public class InventoryClickSelector : MonoBehaviour , IItemClickHandler
     }
     public void HandleItemUse(BaseItem b)
     {
-        if(GameState.state == GameState.State.QuestGiving)
+        if(GameState.IsState(GameState.State.QuestGiving))
         {
             questInventory.HandleClick(b);
         }
