@@ -19,7 +19,7 @@ public class CleanInteractable : BaseInteractable
         var eqp = actor.transform.root.GetComponentInChildren<EquippedItem>();
         if (eqp == null) { return false; }
 
-        if(  eqp.myHeldItem.GetType() == typeof(MopItem))
+        if(  eqp?.myHeldItem?.GetType() == typeof(MopItem) )
         {
             return true;
         }

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 
-public class Inventory : MonoBehaviour , IBeginDragHandler, IDragHandler, IEndDragHandler
+public class Inventory : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerClickHandler
 {
     const int inventoryWidth = 4;
     const int inventoryHeight = 7;
@@ -207,4 +207,12 @@ public class Inventory : MonoBehaviour , IBeginDragHandler, IDragHandler, IEndDr
 
     }
 
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        Debug.Log(GetIndexFromXY(
+                            GetGridPosition(
+                                GetLocalPointFromScreenPos(eventData.position)
+                                )
+                            ));
+    }
 }
