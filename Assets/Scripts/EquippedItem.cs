@@ -8,11 +8,15 @@ public class EquippedItem : MonoBehaviour
     [SerializeField] private SpriteRenderer currentlyHeld;
 
     [SerializeField] private HeldItemEvent heldItemChanged;
+    [HideInInspector]
     public HeldItem myHeldItem;
 
     private void Awake()
     {
-        heldItemChanged.Fired += HeldItemChanged_Fired;
+        if(null != heldItemChanged)
+        {
+            heldItemChanged.Fired += HeldItemChanged_Fired;
+        }
     }
 
     private void HeldItemChanged_Fired(object sender, HeldItem e)
