@@ -16,5 +16,5 @@ MonoBehaviour:
   snitchLevel: 0
   walkSpeed: 3
   runSpeed: 5
-  maxTimeInShop: 10000
-  maxTimeLooking: 300
+  maxTimeInShop: 1000
+  maxTimeLooking: 10

@@ -30,7 +30,7 @@ public class Door : MonoBehaviour
 
     public void Interact(GameObject actor)
     {
-        myLink.SetActive(true);
+        //myLink.SetActive(true);
         Component[] components = myLink.GetComponents(typeof(Component));
         foreach (Component component in components)
         {
@@ -42,7 +42,7 @@ public class Door : MonoBehaviour
         }
         else
         {
-            actor.transform.position = actorDestinationVector;
+            //actor.transform.position = actorDestinationVector;
         }
     }
 
@@ -50,10 +50,8 @@ public class Door : MonoBehaviour
     {
         isTransitioning = true;
         transitionStartTime = Time.time;
-        NavMeshAgent PlayerNav = player.GetComponent<NavMeshAgent>();
-        PlayerNav.SetDestination(actorDestinationVector);
         movementComponent = player.GetComponent<Movement>();
-        movementComponent.enabled = false;
+        movementComponent.TraverseNavMeshLink(actorDestinationVector);
     }
 
     private void Update()
@@ -65,8 +63,7 @@ public class Door : MonoBehaviour
             {
                 MoveCamera();
                 isTransitioning = false;
-                movementComponent.enabled = true;
-                myLink.SetActive(false); ;
+                //myLink.SetActive(false); ;
             }
             else
             {

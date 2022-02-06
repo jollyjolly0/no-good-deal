@@ -27,7 +27,6 @@ public class Movement : MonoBehaviour
     [SerializeField]
     private float yPos = 0.1f;
 
-
     private void Awake()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
@@ -35,18 +34,22 @@ public class Movement : MonoBehaviour
 
     private void Update()
     {
-        float horizontal = Input.GetAxisRaw("Horizontal");
-        float vertical = Input.GetAxisRaw("Vertical");
-        if (horizontal != 0 || vertical != 0)
+        if (navMeshAgent.isOnNavMesh)
         {
-            HandleInput(horizontal, vertical);
-            oldHorizontal = horizontal;
-            oldVertical = vertical;
+            float horizontal = Input.GetAxisRaw("Horizontal");
+            float vertical = Input.GetAxisRaw("Vertical");
+            if (horizontal != 0 || vertical != 0)
+            {
+                HandleInput(horizontal, vertical);
+                oldHorizontal = horizontal;
+                oldVertical = vertical;
+            }
+            else
+            {
+                StopMovement();
+            }
         }
-        else
-        {
-            StopMovement();
-        }
+
 #if DEBUG_BOUNDS_TRACKING
         DrawLastKnownBounds(oldHorizontal, oldVertical);
 #endif
@@ -63,8 +66,8 @@ public class Movement : MonoBehaviour
 
         ///This is where we want to move to
         Vector3 newPos = currentPos;
-        newPos.x = newPos.x + (horizontal);
-        newPos.z = newPos.z + (vertical);
+        newPos.x = newPos.x + (horizontal/10);
+        newPos.z = newPos.z + (vertical/10);
 
         ///These will be our center points(x and z direction) for our bounding boxes that we use to check for collisions with obstacles
         Vector3[] centerPoints = GetBoundsCenterPoints(horizontal,vertical);
@@ -133,6 +136,13 @@ public class Movement : MonoBehaviour
         centerPoints[1] = verticalBoxCenter;
 
         return centerPoints;
+    }
+
+    public void TraverseNavMeshLink(Vector3 endPos)
+    {
+        navMeshAgent.SetDestination(endPos);
+        navMeshAgent.Warp(endPos);
+        navMeshAgent.ActivateCurrentOffMeshLink(false);
     }
 
 
