@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
-
+using UnityEditor.SceneManagement;
 namespace DialogueEditor
 {
     [CustomEditor(typeof(NPCConversation))]
@@ -39,6 +39,8 @@ namespace DialogueEditor
             EditorGUILayout.PrefixLabel("Conversation: ", boldStyle);
             EditorGUILayout.TextField(serializedObject.targetObject.name, regularStyle);
             EditorGUILayout.EndHorizontal();
+
+
             serializedObject.ApplyModifiedProperties();
         }
     }

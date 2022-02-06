@@ -22,7 +22,12 @@ public class QuestScreen : MonoBehaviour
     [SerializeField] private TextMeshProUGUI questName;
     [SerializeField] private TextMeshProUGUI questDescrip;
 
+    [SerializeField]
+    private GameObject questUI;
+
     public static QuestScreen instance;
+
+    private QuestReceiver currentReceiver;
 
     private void Awake()
     {
@@ -44,27 +49,36 @@ public class QuestScreen : MonoBehaviour
         Instantiate(testBaseitem,transform);
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            OpenQuestDialog();
-        }
-    }
 
 
     Quest currentQuest;
-    public void OpenQuestDialog()
+    public void OpenQuestDialog(QuestReceiver receiver)
     {
-        Debug.Log("AWDAWD");
+        questUI.SetActive(true);
         GameState.SetState(GameState.State.QuestGiving);
 
-        currentQuest = new Quest();
         inventoryQuest.StartNewQuestDialog(this);
 
+        currentQuest = new Quest();
         rewardIcons = new BaseItem[4];
-        
+
+        currentReceiver = receiver;
+
+
+
+        SetGoal(possibleQuestGoals[0]);
     }
+
+    public void AcceptQuest()
+    {
+
+    }
+    public void CloseQuestDialog()
+    {
+        questUI.SetActive(false);
+    }
+
+    
 
     public bool AddReward(BaseItem b)
     {
@@ -78,6 +92,8 @@ public class QuestScreen : MonoBehaviour
                 var g = Instantiate(b.gameObject, rewardLocations[i]);
                 g.transform.localPosition = Vector2.zero;
                 rewardIcons[i] = g.GetComponent<BaseItem>();
+
+                QuestChanged();
 
                 return true;
             }
@@ -106,6 +122,7 @@ public class QuestScreen : MonoBehaviour
                 return;
             }
         }
+        QuestChanged();
     }
 
     public bool ContainsItem(BaseItem b)
@@ -134,9 +151,14 @@ public class QuestScreen : MonoBehaviour
 
         b.GetComponent<InventoryElementVisuals>().SetSelectOutline(true);
 
+        QuestChanged();
 
     }
 
+    private void QuestChanged()
+    {
+        currentReceiver.QuestChanged(currentQuest);
+    }
 
 
 
