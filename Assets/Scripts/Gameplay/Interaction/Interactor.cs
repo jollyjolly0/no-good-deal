@@ -31,7 +31,7 @@ public class Interactor : MonoBehaviour
             }
             else
             {
-                current.Interact();
+                current.Interact(this.gameObject);
             }
         }
     }

@@ -9,7 +9,7 @@ public class CleanInteractable : BaseInteractable
         return "Clean";
     }
 
-    public override void Interact()
+    public override void Interact(GameObject actor)
     {
         Debug.Log("Cleaning");
     }
