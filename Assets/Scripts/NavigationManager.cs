@@ -6,7 +6,7 @@ using System;
 public class NavigationManager : MonoBehaviour
 {
     [HideInInspector]
-    public List<Vector3> pointsOfInterest;
+    public List<PointOfInterest> pointsOfInterest;
 
     [HideInInspector]
     public Vector3 frontDeskPosition;
@@ -39,7 +39,7 @@ public class NavigationManager : MonoBehaviour
         GameObject[] destinationPoints = GameObject.FindGameObjectsWithTag("DestinationPoint");
         foreach(GameObject point in destinationPoints)
         {
-            pointsOfInterest.Add(point.transform.position);
+            pointsOfInterest.Add(point.GetComponent<PointOfInterest>());
         }
 
         frontDeskPosition = GameObject.FindGameObjectWithTag("FrontDesk").transform.position;
@@ -49,12 +49,12 @@ public class NavigationManager : MonoBehaviour
     private class PointScore : IComparable<PointScore>
     {
         public float score;
-        public Vector3 position;
+        public PointOfInterest poi;
 
-        public PointScore(float score, Vector3 position)
+        public PointScore(float score, PointOfInterest poi)
         {
             this.score = score;
-            this.position = position;
+            this.poi = poi;
         }
 
         public int CompareTo(PointScore x)
@@ -63,7 +63,7 @@ public class NavigationManager : MonoBehaviour
         }
     }
 
-    public Vector3 GetPointOfInterest(Vector3 position, Vector3 currentPointOfInterest)
+    public PointOfInterest GetPointOfInterest(Vector3 position, PointOfInterest currentPointOfInterest)
     {
         int numOfPointsOfInterest = pointsOfInterest.Count;
         float maxScore = 0;
@@ -71,16 +71,11 @@ public class NavigationManager : MonoBehaviour
 
         for(int i = 0; i < pointsOfInterest.Count; i++)
         {
-            if(currentPointOfInterest != null && pointsOfInterest[i].x == currentPointOfInterest.x && pointsOfInterest[i].z == currentPointOfInterest.z)
+            if(currentPointOfInterest != null && pointsOfInterest[i] == currentPointOfInterest)
             {
                 continue;
             }
-            float myScore = 1.0f/Vector3.Distance(position, pointsOfInterest[i]);
-            if (myScore <= 0.5f)
-            {
-
-                continue;
-            }
+            float myScore = 1.0f/(Vector3.Distance(position, pointsOfInterest[i].transform.position) * pointsOfInterest[i].poiModifier);
             scores.Add(new PointScore(myScore,pointsOfInterest[i]));
             maxScore += myScore;
         }
@@ -92,7 +87,7 @@ public class NavigationManager : MonoBehaviour
             currentScoreCount += score.score / maxScore;
             if(randomPercent <= currentScoreCount)
             {
-                return score.position;
+                return score.poi;
             }
         }
 

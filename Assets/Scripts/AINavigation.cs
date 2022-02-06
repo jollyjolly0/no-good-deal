@@ -143,13 +143,15 @@ public class AINavigation : MonoBehaviour
 
     private AIStates currentState;
 
+    PointOfInterest currentPoi;
     // Update is called once per frame
 
     private void Wander()
     {
         ///Find new point of interest to go to based on proximity
         timeLooking = 0;
-        navAgent.SetDestination(NavigationManager.instance.GetPointOfInterest(transform.position,navAgent.destination));
+        currentPoi = NavigationManager.instance.GetPointOfInterest(transform.position, currentPoi);
+        navAgent.SetDestination(currentPoi.transform.position);
         currentState = AIStates.Wandering;
     }
 
