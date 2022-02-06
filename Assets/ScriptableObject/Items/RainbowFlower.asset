@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52e123335af36634daf6c1f2da82c1df, type: 3}
   m_Name: RainbowFlower
   m_EditorClassIdentifier: 
-  itemName: 
-  itemDescription: 
-  itemImage: {fileID: 0}
-  questDescription: 
+  itemName: Rainbow Flower
+  itemDescription: She loves me, he loves me not. They love me, it loves me not.
+  itemImage: {fileID: 21300000, guid: 98546e8b25fedce4c9ddd2917a7eafe9, type: 3}
+  questDescription: I need a rainbow flower that I can give to my grandkid. He sure
+    loves rainbows that one. Could you get one for me?
