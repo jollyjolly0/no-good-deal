@@ -23,7 +23,7 @@ public class ClickableItem : MonoBehaviour , IPointerClickHandler
     {
         if(eventData.button == PointerEventData.InputButton.Left)
         {
-            handler.HandleItemUse(itemFunctionality);
+            handler?.HandleItemUse(itemFunctionality);
         }
 
         if(eventData.button == PointerEventData.InputButton.Right)

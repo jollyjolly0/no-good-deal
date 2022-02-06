@@ -226,7 +226,7 @@ public class Inventory : MonoBehaviour,
 
     public void HandleItemUse(BaseItem b)
     {
-        if(GameState.state == GameState.State.Default)
+        if(GameState.IsState (GameState.State.Default))
         {
             b.Use();
         }

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-public class QuestScreen : MonoBehaviour , IItemClickHandler
+public class QuestScreen : MonoBehaviour 
 {
     public BaseItem[] possibleQuestGoals;
     public BaseItem testBaseitem;
@@ -22,13 +22,21 @@ public class QuestScreen : MonoBehaviour , IItemClickHandler
     [SerializeField] private TextMeshProUGUI questName;
     [SerializeField] private TextMeshProUGUI questDescrip;
 
-    
+    public static QuestScreen instance;
 
-    public void HandleItemUse(BaseItem b)
+    private void Awake()
     {
-        Debug.Log("removing " + b.name + " from the trade");
-    }
+        if(instance == null)
+        {
+            instance =this;
+        }
+        else
+        {
+            Debug.LogWarning("duplicate " + gameObject.name + "in scene");
+            Destroy(this);
+        }
 
+    }
     private void Start()
     {
         //inventory.giveItemEvent += InventoryOfferItem;
@@ -48,7 +56,8 @@ public class QuestScreen : MonoBehaviour , IItemClickHandler
     Quest currentQuest;
     public void OpenQuestDialog()
     {
-        GameState.state = GameState.State.QuestGiving;
+        Debug.Log("AWDAWD");
+        GameState.SetState(GameState.State.QuestGiving);
 
         currentQuest = new Quest();
         inventoryQuest.StartNewQuestDialog(this);
