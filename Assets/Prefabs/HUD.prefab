@@ -1,5 +1,41 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3714887645177235830
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8577600136857217326}
+  m_Layer: 5
+  m_Name: QuestScreen
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &8577600136857217326
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3714887645177235830}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7747164040969514406}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &7747164040704127750
 GameObject:
   m_ObjectHideFlags: 0
@@ -91,7 +127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actionChanged: {fileID: 11400000, guid: 1469fbc14cda88a418dc66b896cc3b44, type: 2}
-  contextText: {fileID: 7747164041064834987}
+  currentInteractText: {fileID: 7747164041064834987}
 --- !u!1 &7747164040969514402
 GameObject:
   m_ObjectHideFlags: 0
@@ -126,6 +162,7 @@ RectTransform:
   m_Children:
   - {fileID: 7747164040704127749}
   - {fileID: 7747164040770513783}
+  - {fileID: 8577600136857217326}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -367,7 +404,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6467133203672628398, guid: 5a5fa8a06f295ff428a653d5179b9beb, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6467133203672628398, guid: 5a5fa8a06f295ff428a653d5179b9beb, type: 3}
       propertyPath: m_AnchorMax.y
@@ -375,7 +412,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6467133203672628398, guid: 5a5fa8a06f295ff428a653d5179b9beb, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6467133203672628398, guid: 5a5fa8a06f295ff428a653d5179b9beb, type: 3}
       propertyPath: m_AnchorMin.y
@@ -384,10 +421,6 @@ PrefabInstance:
     - target: {fileID: 6467133203672628398, guid: 5a5fa8a06f295ff428a653d5179b9beb, type: 3}
       propertyPath: m_SizeDelta.x
       value: 300
-      objectReference: {fileID: 0}
-    - target: {fileID: 6467133203672628398, guid: 5a5fa8a06f295ff428a653d5179b9beb, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 550
       objectReference: {fileID: 0}
     - target: {fileID: 6467133203672628398, guid: 5a5fa8a06f295ff428a653d5179b9beb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -416,10 +449,6 @@ PrefabInstance:
     - target: {fileID: 6467133203672628398, guid: 5a5fa8a06f295ff428a653d5179b9beb, type: 3}
       propertyPath: m_LocalRotation.z
       value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6467133203672628398, guid: 5a5fa8a06f295ff428a653d5179b9beb, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 655.5
       objectReference: {fileID: 0}
     - target: {fileID: 6467133203672628398, guid: 5a5fa8a06f295ff428a653d5179b9beb, type: 3}
       propertyPath: m_AnchoredPosition.y
