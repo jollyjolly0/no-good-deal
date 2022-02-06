@@ -16,7 +16,16 @@ public class InventoryElement : MonoBehaviour , IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        itemFunctionality.Use();
+        if(eventData.button == PointerEventData.InputButton.Left)
+        {
+            itemFunctionality.Use();
+        }
+
+        if(eventData.button == PointerEventData.InputButton.Right)
+        {
+            Debug.Log("OPEN MENU");
+            ItemDescriptionMenu.instance.OpenMenu(itemFunctionality.itemScriptableObject.itemName, itemFunctionality.itemScriptableObject.itemDescription, itemFunctionality.itemScriptableObject.itemImage);
+        }
     }
 
 

@@ -5,6 +5,7 @@ using UnityEngine;
 public class BaseItem : MonoBehaviour
 {
     protected Inventory owningInventory;
+    public ItemScriptableObject itemScriptableObject;
 
     public void Setup(Inventory i )
     {
