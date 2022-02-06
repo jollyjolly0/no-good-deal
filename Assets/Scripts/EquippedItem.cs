@@ -2,14 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EquipItemVisual : MonoBehaviour
+public class EquippedItem : MonoBehaviour
 {
     public List<Sprite> HeldSprites;
-    [SerializeField]
-    private SpriteRenderer currentlyHeld;
+    [SerializeField] private SpriteRenderer currentlyHeld;
 
-    [SerializeField]
-    private HeldItemEvent heldItemChanged;
+    [SerializeField] private HeldItemEvent heldItemChanged;
+    public HeldItem myHeldItem;
 
     private void Awake()
     {
@@ -18,6 +17,7 @@ public class EquipItemVisual : MonoBehaviour
 
     private void HeldItemChanged_Fired(object sender, HeldItem e)
     {
+        myHeldItem = e;
         if (e == null)
         {
             StopHolding();

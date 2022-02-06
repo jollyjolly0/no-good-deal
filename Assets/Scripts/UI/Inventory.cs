@@ -78,6 +78,10 @@ public class Inventory : MonoBehaviour , IBeginDragHandler, IDragHandler, IEndDr
         onHeldItemChanged.Invoke(this, currentHeldItem);
     }
 
+    public HeldItem GetCurrentHeldItem()
+    {
+        return currentHeldItem;
+    }
     #endregion interface
 
     #region helpers 

@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-public class ContextMenuTextSetter : MonoBehaviour
+public class CurrentInteractTextSetter : MonoBehaviour
 {
     [SerializeField]
     private StringEvent actionChanged;
     [SerializeField]
-    private TMPro.TextMeshProUGUI contextText;
+    private TMPro.TextMeshProUGUI currentInteractText;
 
     private void Awake()
     {
@@ -16,6 +16,6 @@ public class ContextMenuTextSetter : MonoBehaviour
 
     void OnInteractableChanged(object sender, string s)
     {
-        contextText.text = s;
+        currentInteractText.text = s;
     }
 }

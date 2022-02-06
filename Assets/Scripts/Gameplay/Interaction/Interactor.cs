@@ -9,11 +9,16 @@ public class Interactor : MonoBehaviour
 
     private List<BaseInteractable> currentInteractables;
     private BaseInteractable cachedCurrent = null;
+    [SerializeField]
+    private HeldItemEvent changedHeldItem;
 
     private void Awake()
     {
         currentInteractables = new List<BaseInteractable>();
+        changedHeldItem.Fired += ChangedHeldItem_Fired;
     }
+
+
 
     private void Update()
     {
@@ -29,6 +34,11 @@ public class Interactor : MonoBehaviour
                 current.Interact();
             }
         }
+    }
+
+    private void ChangedHeldItem_Fired(object sender, HeldItem e)
+    {
+        CheckContextChanged();
     }
 
 

@@ -16,7 +16,16 @@ public class CleanInteractable : BaseInteractable
 
     public override bool InteractionCondition(GameObject actor)
     {
-        return true;
-        //if(actor.)
+        var eqp = actor.transform.root.GetComponentInChildren<EquippedItem>();
+        if (eqp == null) { return false; }
+
+        if(  eqp.myHeldItem.GetType() == typeof(MopItem))
+        {
+            return true;
+        }
+
+        return false;
+
+        
     }
 }
