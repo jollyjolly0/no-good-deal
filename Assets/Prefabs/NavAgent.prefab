@@ -68,11 +68,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84cba3a58e848e249becd9933324e0e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collisionMask:
-    serializedVersion: 2
-    m_Bits: 64
   minWaitTimeToMove: 2
   maxWaitTimeToMove: 5
+  AIScriptable: {fileID: 11400000, guid: b1d7819f8e14c5345ab5bd10f3fe17e9, type: 2}
 --- !u!1 &3119050693252527021
 GameObject:
   m_ObjectHideFlags: 0
