@@ -34,5 +34,10 @@ public class Movement : MonoBehaviour
         rb.AddForce(new Vector3(horizontal * speed * Time.deltaTime, 0, vertical * speed * Time.deltaTime));
     }
 
+    public void WarpToNewPosition(Vector3 actorDestinationVector)
+    {
+        rb.MovePosition(actorDestinationVector);
+    }
+
 
 }
