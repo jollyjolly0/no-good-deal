@@ -47,7 +47,7 @@ NavMeshObstacle:
   m_MoveThreshold: 0.1
   m_Carve: 0
   m_CarveOnlyStationary: 1
-  m_Center: {x: -2.75, y: -0.2, z: 0}
+  m_Center: {x: -2.75, y: -0.1, z: 0}
   m_TimeToStationary: 0.5
 --- !u!65 &209726285
 BoxCollider:
@@ -61,7 +61,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.5, y: 2.8, z: 10}
-  m_Center: {x: -2.75, y: -0.2, z: 0}
+  m_Center: {x: -2.75, y: -0.1, z: 0}
 --- !u!1 &2851801465174067222
 GameObject:
   m_ObjectHideFlags: 0
@@ -88,7 +88,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2851801465174067222}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0.9}
+  m_LocalPosition: {x: 0, y: 0, z: 0.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -210,7 +210,7 @@ NavMeshObstacle:
   m_MoveThreshold: 0.1
   m_Carve: 0
   m_CarveOnlyStationary: 1
-  m_Center: {x: 2.75, y: -0.7, z: 0}
+  m_Center: {x: 2.75, y: -0.6, z: 0}
   m_TimeToStationary: 0.5
 --- !u!65 &1763184398
 BoxCollider:
@@ -224,7 +224,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.5, y: 1.8, z: 10}
-  m_Center: {x: 2.75, y: -0.7, z: 0}
+  m_Center: {x: 2.75, y: -0.6, z: 0}
 --- !u!1 &2851801465375613650
 GameObject:
   m_ObjectHideFlags: 0
@@ -236,7 +236,7 @@ GameObject:
   - component: {fileID: 2851801465375613651}
   m_Layer: 7
   m_Name: Desk
-  m_TagString: Untagged
+  m_TagString: FrontDesk
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
