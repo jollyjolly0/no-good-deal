@@ -17,4 +17,4 @@ MonoBehaviour:
   walkSpeed: 3
   runSpeed: 5
   maxTimeInShop: 1000
-  maxTimeLooking: 200
+  maxTimeLooking: 10
