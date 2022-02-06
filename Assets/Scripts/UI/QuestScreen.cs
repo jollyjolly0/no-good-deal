@@ -2,17 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class QuestScreen : MonoBehaviour
+public class QuestScreen : MonoBehaviour 
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public BaseItem[] possibleQuestGoals;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
+
 }

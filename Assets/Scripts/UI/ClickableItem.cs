@@ -4,9 +4,9 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 
-public class InventoryElement : MonoBehaviour , IPointerClickHandler
+public class ClickableItem : MonoBehaviour , IPointerClickHandler
 {
-
+    IItemClickHandler handler;
     private BaseItem itemFunctionality;
 
     private void Awake()
@@ -14,9 +14,15 @@ public class InventoryElement : MonoBehaviour , IPointerClickHandler
         itemFunctionality = GetComponent<BaseItem>();
     }
 
+    private void Start()
+    {
+        handler = GetComponentInParent<IItemClickHandler>();
+    }
+
     public void OnPointerClick(PointerEventData eventData)
     {
-        itemFunctionality.Use();
+        handler.HandleItemUse(itemFunctionality);
+        //itemFunctionality.Use();
     }
 
 
