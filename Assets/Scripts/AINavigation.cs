@@ -25,7 +25,16 @@ public class AINavigation : MonoBehaviour
 
     private void Start()
     {
-        MoveToFrontDesk();
+        float shouldWander = Random.Range(0, NavigationManager.instance.curiousityMax);
+        ///Make it a little more likely that they might wander right away rather than going straight to the front desk
+        if(shouldWander <= AIScriptable.curiousityLevel * 400)
+        {
+            Wander();
+        }
+        else
+        {
+            MoveToFrontDesk();
+        }
         StartUpdateLoop();
     }
 
