@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class BaseItem : MonoBehaviour
 {
+    protected Inventory owningInventory;
+
+    public void Setup(Inventory i )
+    {
+        owningInventory = i;
+    }
 
     public virtual void Use()
     {
