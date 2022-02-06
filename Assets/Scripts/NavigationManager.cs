@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class NavigationManager : MonoBehaviour
 {
@@ -29,6 +30,7 @@ public class NavigationManager : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+        UnityEngine.Random.InitState(DateTime.Now.Millisecond);
     }
     private void Start()
     {
@@ -45,6 +47,6 @@ public class NavigationManager : MonoBehaviour
     public Vector3 GetPointOfInterest()
     {
         int numOfPointsOfInterest = pointsOfInterest.Count;
-        return pointsOfInterest[Random.Range(0, numOfPointsOfInterest)];
+        return pointsOfInterest[UnityEngine.Random.Range(0, numOfPointsOfInterest)];
     }
 }
