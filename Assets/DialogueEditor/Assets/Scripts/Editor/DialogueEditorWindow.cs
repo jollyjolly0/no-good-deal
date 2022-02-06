@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using UnityEditor.SceneManagement;
 
 namespace DialogueEditor
 {
@@ -1501,7 +1502,11 @@ namespace DialogueEditor
 #if UNITY_EDITOR
             if (!Application.isPlaying)
             {
-                UnityEditor.SceneManagement.EditorSceneManager.MarkSceneDirty(UnityEditor.SceneManagement.EditorSceneManager.GetActiveScene());
+                if (CurrentAsset != null)
+                {
+                    EditorUtility.SetDirty(CurrentAsset.transform);
+                    EditorSceneManager.MarkSceneDirty(CurrentAsset.transform.gameObject.scene);
+                }
             }
 #endif
         }

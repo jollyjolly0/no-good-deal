@@ -145,6 +145,8 @@ namespace DialogueEditor
 
         public void StartConversation(NPCConversation conversation)
         {
+            dontShowOptions = false;
+
             m_conversation = conversation.Deserialize();
             if (OnConversationStarted != null)
                 OnConversationStarted.Invoke();
@@ -566,6 +568,7 @@ namespace DialogueEditor
         {
             m_selectedOption = null;
             SetState(eState.TransitioningOptionsOff);
+            dontShowOptions = false;
         }
 
 
@@ -645,6 +648,7 @@ namespace DialogueEditor
 
         private void CreateUIOptions()
         {
+            if (dontShowOptions) { return; }
             // Display new options
             if (m_currentSpeech.ConnectionType == Connection.eConnectionType.Option)
             {
@@ -837,6 +841,29 @@ namespace DialogueEditor
 #if UNITY_EDITOR
             Debug.LogWarning("[Dialogue Editor]: " + warning);
 #endif
+        }
+
+
+
+        public bool dontShowOptions = false;
+        public void HijackText(string s)
+        {
+
+            dontShowOptions = true;
+
+            SetState(eState.ScrollingText);
+
+            m_targetScrollTextCount = m_targetScrollTextCount = s.Length + 1; ;
+            DialogueText.maxVisibleCharacters = 0;
+            m_elapsedScrollTime = 0f;
+            m_scrollIndex = 0;
+
+            DialogueText.text = s;
+        }
+
+        public void ForceEnd()
+        {
+            EndButtonSelected();
         }
     }
 }
