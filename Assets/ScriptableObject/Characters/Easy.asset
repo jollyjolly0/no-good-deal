@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ac86121aafe84a488e9b692d6f5c4ca, type: 3}
   m_Name: Easy
   m_EditorClassIdentifier: 
-  curiousityLevel: 1
+  curiousityLevel: 100
   snitchLevel: 0
   walkSpeed: 3
   runSpeed: 5

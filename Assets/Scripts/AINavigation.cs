@@ -49,6 +49,12 @@ public class AINavigation : MonoBehaviour
         
     }
 
+    private Color debugColor;
+    private void Update()
+    {
+        Debug.DrawLine(transform.position, new Vector3(transform.position.x, transform.position.y, transform.position.z + 5), debugColor);
+    }
+
     private void StartUpdateLoop()
     {
         StartCoroutine(UpdateAtLongerFrequency());
@@ -60,6 +66,7 @@ public class AINavigation : MonoBehaviour
         switch (currentState)
         {
             case (AIStates.Looking):
+                debugColor = Color.blue;
                 timeLooking += Time.deltaTime;
                 if (isLookingAtNarcableObject)
                 {
@@ -89,12 +96,14 @@ public class AINavigation : MonoBehaviour
                 }
                 break;
             case (AIStates.Wandering):
-                if(Vector2.Distance(navAgent.transform.position,navAgent.destination) < 0.01f)
+                debugColor = Color.green;
+                if(Vector2.Distance(navAgent.transform.position,navAgent.destination) < 1f)
                 {
                     currentState = AIStates.Looking;
                 }
                 break;
             case (AIStates.FrontDesk):
+                debugColor = Color.red;
                 timeLooking += updateInteval;
                 shouldWander = Random.Range(0, NavigationManager.instance.curiousityMax);
                 if(shouldWander <= AIScriptable.curiousityLevel * timeLooking)
@@ -103,10 +112,13 @@ public class AINavigation : MonoBehaviour
                 }
                 break;
             case (AIStates.Exiting):
+                debugColor = Color.cyan;
                 break;
             case (AIStates.Snitching):
+                debugColor = Color.black;
                 break;
             case (AIStates.Curious):
+                debugColor = Color.grey;
                 break;
         }
 
@@ -135,9 +147,9 @@ public class AINavigation : MonoBehaviour
     private void Wander()
     {
         ///Find new point of interest to go to based on proximity
-        currentState = AIStates.Wandering;
         timeLooking = 0;
         navAgent.SetDestination(NavigationManager.instance.GetPointOfInterest());
+        currentState = AIStates.Wandering;
     }
 
     private void Snitch()

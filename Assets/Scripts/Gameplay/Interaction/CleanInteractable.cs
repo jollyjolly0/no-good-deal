@@ -9,9 +9,9 @@ public class CleanInteractable : BaseInteractable
         return "Clean";
     }
 
-    public override void Interact()
+    public override void Interact(GameObject actor)
     {
-        Debug.Log("Cleaningg");
+        Debug.Log("Cleaning");
     }
 
     public override bool InteractionCondition(GameObject actor)

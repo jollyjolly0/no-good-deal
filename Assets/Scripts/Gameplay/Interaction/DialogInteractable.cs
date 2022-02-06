@@ -13,7 +13,7 @@ public class DialogInteractable : BaseInteractable
         return "Talk";
     }
 
-    public override void Interact()
+    public override void Interact(GameObject actor)
     {
         ConversationManager.Instance.StartConversation(conversation);
     }
