@@ -75,7 +75,7 @@ public class Interactor : MonoBehaviour
 
 
 
-    private void OnTriggerEnter(Collider2D collision)
+    private void OnTriggerEnter(Collider collision)
     {
         var inter =collision.GetComponentInParent<BaseInteractable>();
         if(inter != null)
@@ -86,7 +86,7 @@ public class Interactor : MonoBehaviour
         
     }
 
-    private void OnTriggerExit(Collider2D collision)
+    private void OnTriggerExit(Collider collision)
     {
         var inter = collision.GetComponentInParent<BaseInteractable>();
         if (inter != null && currentInteractables.Contains(inter))

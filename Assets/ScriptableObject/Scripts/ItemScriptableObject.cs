@@ -9,4 +9,5 @@ public class ItemScriptableObject : ScriptableObject
     public string itemDescription;
     public Sprite itemImage;
     public string questDescription;
+    public int experience = 100;
 }

@@ -29,7 +29,6 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
-  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8102413026326050877}
   m_Father: {fileID: 0}
@@ -108,6 +107,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5075123056239738446}
     m_Modifications:
+    - target: {fileID: 808359371095546423, guid: d9fa78e8c3c4f2b4b8f7f77ca8426cca, type: 3}
+      propertyPath: m_Spacing
+      value: -46
+      objectReference: {fileID: 0}
     - target: {fileID: 808359371095546423, guid: d9fa78e8c3c4f2b4b8f7f77ca8426cca, type: 3}
       propertyPath: m_ChildAlignment
       value: 7

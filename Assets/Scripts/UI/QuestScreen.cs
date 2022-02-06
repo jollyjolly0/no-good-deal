@@ -21,6 +21,7 @@ public class QuestScreen : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI questName;
     [SerializeField] private TextMeshProUGUI questDescrip;
+    [SerializeField] private TextMeshProUGUI questEXP;
 
     [SerializeField]
     private GameObject questUI;
@@ -71,7 +72,8 @@ public class QuestScreen : MonoBehaviour
 
     public void AcceptQuest()
     {
-
+        currentReceiver.SetQuest(currentQuest);
+        CloseQuestDialog();
     }
     public void CloseQuestDialog()
     {
@@ -142,6 +144,7 @@ public class QuestScreen : MonoBehaviour
 
         questName.text = "Quest for the " + b.itemScriptableObject.itemName;
         questDescrip.text = b.itemScriptableObject.questDescription;
+        questEXP.text = b.itemScriptableObject.experience.ToString() + " Experience";
 
 
         foreach (var item in possibleQuestGoals)
