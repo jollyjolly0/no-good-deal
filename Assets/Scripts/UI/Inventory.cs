@@ -12,6 +12,11 @@ public class Inventory : MonoBehaviour , IBeginDragHandler, IDragHandler, IEndDr
     const int inventorySize = inventoryWidth * inventoryHeight;
     BaseItem[] items;
 
+
+    HeldItem currentHeldItem = null;
+    [SerializeField]
+    private HeldItemEvent onHeldItemChanged;
+
     #region setup
     private void Awake()
     {
@@ -59,6 +64,24 @@ public class Inventory : MonoBehaviour , IBeginDragHandler, IDragHandler, IEndDr
         Destroy(item.gameObject);
     }
 
+    public void EquipItem(HeldItem item)
+    {
+        if(currentHeldItem == item)
+        {
+            currentHeldItem = null;
+        }
+        else 
+        { 
+            currentHeldItem = item;
+        }
+
+        onHeldItemChanged.Invoke(this, currentHeldItem);
+    }
+
+    public HeldItem GetCurrentHeldItem()
+    {
+        return currentHeldItem;
+    }
     #endregion interface
 
     #region helpers 

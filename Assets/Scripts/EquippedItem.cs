@@ -2,11 +2,35 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HoldItem : MonoBehaviour
+public class EquippedItem : MonoBehaviour
 {
     public List<Sprite> HeldSprites;
-    [SerializeField]
-    private SpriteRenderer currentlyHeld;
+    [SerializeField] private SpriteRenderer currentlyHeld;
+
+    [SerializeField] private HeldItemEvent heldItemChanged;
+    [HideInInspector]
+    public HeldItem myHeldItem;
+
+    private void Awake()
+    {
+        if(null != heldItemChanged)
+        {
+            heldItemChanged.Fired += HeldItemChanged_Fired;
+        }
+    }
+
+    private void HeldItemChanged_Fired(object sender, HeldItem e)
+    {
+        myHeldItem = e;
+        if (e == null)
+        {
+            StopHolding();
+        }
+        else
+        {
+            SetHolding(e.holdSprite);
+        }
+    }
 
     public void SetHolding(int spriteIndex)
     {

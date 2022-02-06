@@ -9,11 +9,17 @@ public class Interactor : MonoBehaviour
 
     private List<BaseInteractable> currentInteractables;
     private BaseInteractable cachedCurrent = null;
+    [SerializeField]
+    private HeldItemEvent changedHeldItem;
 
     private void Awake()
     {
         currentInteractables = new List<BaseInteractable>();
+        changedHeldItem.Fired += ChangedHeldItem_Fired;
     }
+
+
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
@@ -30,6 +36,11 @@ public class Interactor : MonoBehaviour
         }
     }
 
+    private void ChangedHeldItem_Fired(object sender, HeldItem e)
+    {
+        CheckContextChanged();
+    }
+
 
     private BaseInteractable GetCurrentInteract()
     {
@@ -38,6 +49,8 @@ public class Interactor : MonoBehaviour
 
             foreach (var item in currentInteractables)
             {
+                if (item.InteractionCondition(this.gameObject.transform.root.gameObject) == false) { break; }
+
                 float dist = Vector3.Distance(transform.position, item.GetPosition());
                 if (dist < closestDistance)
                 {
