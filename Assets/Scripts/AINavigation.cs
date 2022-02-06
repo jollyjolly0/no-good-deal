@@ -67,7 +67,7 @@ public class AINavigation : MonoBehaviour
         {
             case (AIStates.Looking):
                 debugColor = Color.blue;
-                timeLooking += Time.deltaTime;
+                timeLooking += updateInteval;
                 if (isLookingAtNarcableObject)
                 {
 
@@ -142,13 +142,14 @@ public class AINavigation : MonoBehaviour
     }
 
     private AIStates currentState;
+
     // Update is called once per frame
 
     private void Wander()
     {
         ///Find new point of interest to go to based on proximity
         timeLooking = 0;
-        navAgent.SetDestination(NavigationManager.instance.GetPointOfInterest());
+        navAgent.SetDestination(NavigationManager.instance.GetPointOfInterest(transform.position,navAgent.destination));
         currentState = AIStates.Wandering;
     }
 

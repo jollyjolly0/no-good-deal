@@ -6,7 +6,7 @@ public class Interactor : MonoBehaviour
 {
     [SerializeField]
     private StringEvent contextChanged;
-
+    [SerializeField]
     private List<BaseInteractable> currentInteractables;
     private BaseInteractable cachedCurrent = null;
     [SerializeField]

@@ -51,7 +51,7 @@ public class Door : MonoBehaviour
         isTransitioning = true;
         transitionStartTime = Time.time;
         movementComponent = player.GetComponent<Movement>();
-        movementComponent.TraverseNavMeshLink(actorDestinationVector);
+        movementComponent.WarpToNewPosition(actorDestinationVector);
     }
 
     private void Update()
