@@ -127,8 +127,8 @@ public class Movement : MonoBehaviour
 
         Vector3 horizontalBoxCenter = currentPos;
         Vector3 verticalBoxCenter = currentPos;
-        horizontalBoxCenter.y += 0.1f;
-        verticalBoxCenter.y += 0.1f;
+        horizontalBoxCenter.y += yPos;
+        verticalBoxCenter.y += yPos;
         horizontalBoxCenter.x += (horizontal / 2) + (horizontal * xHalfExtents.x);
         verticalBoxCenter.z += (vertical / 2) + (vertical * zHalfExtents.z);
 
