@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 
-public class Inventory : MonoBehaviour , IBeginDragHandler, IDragHandler, IEndDragHandler , IPointerClickHandler
+public class Inventory : MonoBehaviour , IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     const int inventoryWidth = 4;
     const int inventoryHeight = 7;
