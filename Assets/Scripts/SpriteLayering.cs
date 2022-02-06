@@ -18,7 +18,7 @@ public class SpriteLayering : MonoBehaviour
 
     private void Update()
     {
-        float yPos = (-1f*(parentTransform.transform.position.z - minZ)) + .1f;
+        float yPos = (-.001f*(parentTransform.transform.position.z - minZ)) + .1f;
         this.transform.localPosition = new Vector3(this.transform.localPosition.x, yPos, this.transform.localPosition.z);
     }
 }
