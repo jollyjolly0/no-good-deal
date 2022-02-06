@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52e123335af36634daf6c1f2da82c1df, type: 3}
+  m_Name: LusciousMop
+  m_EditorClassIdentifier: 
+  itemName: Luscious Mop
+  itemDescription: A funky fresh, fully articulated mop. Each mop strand is borne
+    from the beard hair of an arch magister of ATLEAST the 14th caliber
+  itemImage: {fileID: 21300000, guid: c38feea3db746f844b885a26cdaa6b71, type: 3}
+  questDescription: Some bitch-ass witch has been using this mop as a broomstick.
+    That's fucked up, yo! Get that thing back for me!

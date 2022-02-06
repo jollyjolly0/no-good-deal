@@ -28,7 +28,11 @@ public class ClickableItem : MonoBehaviour , IPointerClickHandler
 
         if(eventData.button == PointerEventData.InputButton.Right)
         {
-            ItemDescriptionMenu.instance.OpenMenu(itemFunctionality.itemScriptableObject.itemName, itemFunctionality.itemScriptableObject.itemDescription, itemFunctionality.itemScriptableObject.itemImage);
+            ItemDescriptionMenu.instance.OpenMenu(
+                itemFunctionality.itemScriptableObject.itemName,
+                itemFunctionality.itemScriptableObject.itemDescription,
+                itemFunctionality.itemScriptableObject.itemImage
+                );
         }
     }
 

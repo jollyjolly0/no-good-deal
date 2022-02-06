@@ -115,6 +115,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9093762697b40b448833b0e8c337a654, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: Careful it's quite pointy!
-  itemSprite: {fileID: 21300000, guid: 237bddd66bb5b264aad29993cc755a58, type: 3}
-  itemName: Spike Trap
+  itemScriptableObject: {fileID: 11400000, guid: dc95de9cabac0be4090f95393f19a275, type: 2}

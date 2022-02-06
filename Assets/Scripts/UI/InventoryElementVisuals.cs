@@ -8,6 +8,9 @@ public class InventoryElementVisuals : MonoBehaviour,
 {
     [SerializeField]
     private Image hoverOutline;
+    
+    [SerializeField]
+    private Image selectOutline;
 
     [SerializeField]
     private Image itemIcon;
@@ -33,4 +36,12 @@ public class InventoryElementVisuals : MonoBehaviour,
 
         itemIcon.color = new Color(1, 1, 1, 1);
     }
+
+    public void SetSelectOutline(bool b)
+    {
+        selectOutline.enabled = b;
+    }
+
+    
+
 }

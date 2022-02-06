@@ -6,7 +6,6 @@ using UnityEngine.EventSystems;
 
 
 public class Inventory : MonoBehaviour,
-    IItemClickHandler,
     IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerClickHandler
 {
     const int inventoryWidth = 4;
@@ -18,6 +17,7 @@ public class Inventory : MonoBehaviour,
     HeldItem currentHeldItem = null;
     [SerializeField]
     private HeldItemEvent onHeldItemChanged;
+
 
     #region setup
     private void Awake()
@@ -89,6 +89,7 @@ public class Inventory : MonoBehaviour,
     {
         return currentHeldItem;
     }
+
     #endregion interface
 
     #region helpers 
@@ -225,6 +226,10 @@ public class Inventory : MonoBehaviour,
 
     public void HandleItemUse(BaseItem b)
     {
-        b.Use();
+        if(GameState.state == GameState.State.Default)
+        {
+            b.Use();
+        }
+
     }
 }

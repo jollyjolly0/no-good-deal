@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52e123335af36634daf6c1f2da82c1df, type: 3}
   m_Name: RainbowFlower
   m_EditorClassIdentifier: 
-  itemName: 
-  itemDescription: 
-  itemImage: {fileID: 0}
-  questDescription: 
+  itemName: Rainbow Flower
+  itemDescription: A mystical flower with the properties of turning lead into gold.
+    It is said that they can only grow in ground exposed to rainbows for an entire
+    season
+  itemImage: {fileID: 21300000, guid: 98546e8b25fedce4c9ddd2917a7eafe9, type: 3}
+  questDescription: 'Become a being of pure light so you can traverse rainbows to
+    Rainbow Island. Then pick one and bring it back to me. '
