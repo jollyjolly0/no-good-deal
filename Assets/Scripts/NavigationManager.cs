@@ -7,7 +7,17 @@ public class NavigationManager : MonoBehaviour
     [HideInInspector]
     public List<Vector3> pointsOfInterest;
 
+    [HideInInspector]
+    public Vector3 frontDeskPosition;
+
+    [HideInInspector]
+    public Vector3 exitPosition;
+
     public static NavigationManager instance;
+
+    public float curiousityMax = 100.0f;
+    public float narcMax = 100.0f;
+    public float frontDeskWander = 100.0f;
 
     private void Awake()
     {
@@ -27,6 +37,9 @@ public class NavigationManager : MonoBehaviour
         {
             pointsOfInterest.Add(point.transform.position);
         }
+
+        frontDeskPosition = GameObject.FindGameObjectWithTag("FrontDesk").transform.position;
+        exitPosition = GameObject.FindGameObjectWithTag("Exit").transform.position;
     }
 
     public Vector3 GetPointOfInterest()
