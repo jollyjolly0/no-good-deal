@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - DestinationPoint
+  - FrontDesk
+  - Exit
   layers:
   - Default
   - TransparentFX
