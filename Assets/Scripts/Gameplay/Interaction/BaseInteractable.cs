@@ -9,6 +9,11 @@ public class BaseInteractable :MonoBehaviour
     public virtual Vector3 GetPosition() { return transform.position; }
     public virtual int GetPriority() { return 0; }
 
+    public virtual bool InteractionCondition(GameObject interactor)  //check to see if actor is valid for this use
+    {
+        return true;    
+    }
+
 
 }
 

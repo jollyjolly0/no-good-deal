@@ -14,6 +14,7 @@ public class Interactor : MonoBehaviour
     {
         currentInteractables = new List<BaseInteractable>();
     }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
@@ -38,6 +39,8 @@ public class Interactor : MonoBehaviour
 
             foreach (var item in currentInteractables)
             {
+                if (item.InteractionCondition(this.gameObject.transform.root.gameObject) == false) { break; }
+
                 float dist = Vector3.Distance(transform.position, item.GetPosition());
                 if (dist < closestDistance)
                 {

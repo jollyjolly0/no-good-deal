@@ -13,4 +13,10 @@ public class CleanInteractable : BaseInteractable
     {
         Debug.Log("Cleaning");
     }
+
+    public override bool InteractionCondition(GameObject actor)
+    {
+        return true;
+        //if(actor.)
+    }
 }
