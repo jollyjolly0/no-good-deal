@@ -7,11 +7,9 @@ public class SpriteLayering : MonoBehaviour
     [SerializeField]
     Transform parentTransform;
 
-    [SerializeField]
-    private float minZ;
 
-    [SerializeField]
-    private float maxZ;
+    private const float minZ = -6f;
+
 
     private void Awake()
     {
@@ -20,7 +18,7 @@ public class SpriteLayering : MonoBehaviour
 
     private void Update()
     {
-        float yPos = parentTransform.transform.position.z - minZ + .1f;
-        this.transform.position = new Vector3(this.transform.position.x, yPos, this.transform.position.z);
+        float zPos = (-1f*(parentTransform.transform.position.z - minZ)) + .1f;
+        this.transform.localPosition = new Vector3(this.transform.localPosition.x, this.transform.localPosition.y, zPos);
     }
 }

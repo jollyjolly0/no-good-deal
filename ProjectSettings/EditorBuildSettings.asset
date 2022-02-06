@@ -8,4 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/QuinnTestScene.unity
+    guid: f839d56fc3c22e546bce643831cf448b
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: c39641d178a59be49be6a5c368b57f8b
   m_configObjects: {}

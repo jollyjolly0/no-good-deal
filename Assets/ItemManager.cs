@@ -6,6 +6,8 @@ public class ItemManager : MonoBehaviour
 {
     float timer = 0;
     public OmenManager omenManager;
+    public GameObject[] items;
+
     // Start is called before the first frame update
     void Start()
     {
