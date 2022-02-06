@@ -53,7 +53,7 @@ public class DoorInteractable : BaseInteractable
         isTransitioning = true;
         transitionStartTime = Time.time;
         movementComponent = player.GetComponent<Movement>();
-        movementComponent.TraverseNavMeshLink(actorDestinationVector);
+        //movementComponent.TraverseNavMeshLink(actorDestinationVector);
     }
 
     private void Update()
