@@ -23,7 +23,6 @@ public class InventoryElement : MonoBehaviour , IPointerClickHandler
 
         if(eventData.button == PointerEventData.InputButton.Right)
         {
-            Debug.Log("OPEN MENU");
             ItemDescriptionMenu.instance.OpenMenu(itemFunctionality.itemScriptableObject.itemName, itemFunctionality.itemScriptableObject.itemDescription, itemFunctionality.itemScriptableObject.itemImage);
         }
     }
