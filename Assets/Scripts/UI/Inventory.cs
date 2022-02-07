@@ -18,6 +18,7 @@ public class Inventory : MonoBehaviour,
     [SerializeField]
     private HeldItemEvent onHeldItemChanged;
 
+    [SerializeField] private RectTransform bag;
 
     #region setup
     private void Awake()
@@ -44,7 +45,7 @@ public class Inventory : MonoBehaviour,
 
         Vector2Int gridPos = GetXYFromIndex(firstAvailable);
 
-        var g = Instantiate(itemPrefab, transform);
+        var g = Instantiate(itemPrefab, bag);
         g.transform.localPosition = GetUIPosition(gridPos);
 
 
