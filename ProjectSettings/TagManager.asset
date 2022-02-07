@@ -7,6 +7,7 @@ TagManager:
   - DestinationPoint
   - FrontDesk
   - Exit
+  - Quest
   layers:
   - Default
   - TransparentFX

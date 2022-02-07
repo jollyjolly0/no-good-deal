@@ -24,22 +24,20 @@ public class AINavigation : MonoBehaviour
 
     private void Start()
     {
-        float shouldWander = Random.Range(0, NavigationManager.instance.curiousityMax);
-        ///Make it a little more likely that they might wander right away rather than going straight to the front desk
-        if (shouldWander <= AIScriptable.curiousityLevel * 400)
-        {
-            Wander();
-        }
-        else
-        {
-            MoveToFrontDesk();
-        }
+        currentState = AIStates.Returning;
         StartUpdateLoop();
+        StartCoroutine(TestQuesting());
     }
 
     private float timeLooking = 0;
 
-    private float updateInteval = 2.0f;
+    private float timeQuesting = 0;
+
+    private float questTime = 0;
+
+    private float waitingToReturnTime = 0;
+
+    private float updateInteval = 1.0f;
     IEnumerator UpdateAtLongerFrequency()
     {
         UpdateLoop(UnityEngine.Random.Range(0,1000));
@@ -49,9 +47,16 @@ public class AINavigation : MonoBehaviour
     }
 
     private Color debugColor;
+
+    IEnumerator TestQuesting()
+    {
+        yield return new WaitForSeconds(5.0f);
+        SetQuestTime(30);
+    }
+
     private void Update()
     {
-        Debug.DrawLine(transform.position, new Vector3(transform.position.x, transform.position.y, transform.position.z + 5), debugColor);
+        Debug.DrawLine(transform.position, new Vector3(transform.position.x, transform.position.y, transform.position.z + 2), debugColor);
     }
 
     private void StartUpdateLoop()
@@ -60,9 +65,12 @@ public class AINavigation : MonoBehaviour
     }
     private void UpdateLoop(int updateNum)
     {
-        timeInShop += updateInteval;
+        if(currentState != AIStates.Questing && currentState != AIStates.WaitingToReturn)
+        {
+            timeInShop += updateInteval;
+        }
 
-        if (currentState != AIStates.Exiting || currentState != AIStates.Snitching)
+        if (currentState != AIStates.Exiting || currentState != AIStates.Snitching || currentState != AIStates.Questing)
         {
             float shouldGoToExit = Random.Range(0, AIScriptable.maxTimeInShop);
             if (shouldGoToExit < timeInShop)
@@ -124,7 +132,7 @@ public class AINavigation : MonoBehaviour
             case (AIStates.Exiting):
                 if(Vector2.Distance(navAgent.transform.position, NavigationManager.instance.exitPosition) < 1f)
                 {
-                    Destroy(navAgent.gameObject);
+                    currentState = AIStates.WaitingToReturn;
                 }
                 debugColor = Color.cyan;
                 break;
@@ -133,6 +141,34 @@ public class AINavigation : MonoBehaviour
                 break;
             case (AIStates.Curious):
                 debugColor = Color.grey;
+                break;
+            case (AIStates.WaitingToReturn):
+                waitingToReturnTime += updateInteval;
+                float shouldReturn = Random.Range(0, AIScriptable.maxTimeWaitingToReturn);
+                if(shouldReturn > waitingToReturnTime)
+                {
+                    currentState = AIStates.Returning;
+                }
+                break;
+            case (AIStates.Returning):
+                shouldWander = Random.Range(0, NavigationManager.instance.curiousityMax);
+                ///Make it a little more likely that they might wander right away rather than going straight to the front desk
+                if (shouldWander <= AIScriptable.curiousityLevel * 400)
+                {
+                    Wander();
+                }
+                else
+                {
+                    MoveToFrontDesk();
+                }
+                break;
+            case (AIStates.Questing):
+                debugColor = Color.white;
+                timeQuesting += updateInteval;
+                if(timeQuesting >= questTime)
+                {
+                    currentState = AIStates.Returning;
+                }
                 break;
         }
 
@@ -146,7 +182,10 @@ public class AINavigation : MonoBehaviour
         Exiting,
         Wandering,
         FrontDesk,
-        Looking
+        Looking,
+        WaitingToReturn,
+        Returning,
+        Questing
     }
 
     private AIStates currentState;
@@ -193,6 +232,16 @@ public class AINavigation : MonoBehaviour
     private void MoveToExit()
     {
         timeLooking = 0;
+        waitingToReturnTime = 0;
+        timeInShop = 0;
         navAgent.SetDestination(NavigationManager.instance.exitPosition);
+    }
+
+    public void SetQuestTime(float time)
+    {
+        timeQuesting = 0;
+        questTime = time;
+        MoveToExit();
+        currentState = AIStates.Questing;
     }
 }

@@ -19,8 +19,7 @@ public class NavigationManager : MonoBehaviour
     public float curiousityMax = 100.0f;
     public float narcMax = 100.0f;
     public float frontDeskWander = 100.0f;
-    [SerializeField]
-    private float distanceModifier = 4;
+
 
     private void Awake()
     {

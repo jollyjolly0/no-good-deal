@@ -11,4 +11,5 @@ public class AIScriptableObject : ScriptableObject
     public float runSpeed;
     public float maxTimeInShop;
     public float maxTimeLooking;
+    public float maxTimeWaitingToReturn;
 }

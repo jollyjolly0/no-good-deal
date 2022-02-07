@@ -18,3 +18,4 @@ MonoBehaviour:
   runSpeed: 5
   maxTimeInShop: 1000
   maxTimeLooking: 10
+  maxTimeWaitingToReturn: 20
