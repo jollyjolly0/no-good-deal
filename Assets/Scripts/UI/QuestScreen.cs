@@ -32,9 +32,9 @@ public class QuestScreen : MonoBehaviour
 
     private void Awake()
     {
-        if(instance == null)
+        if (instance == null)
         {
-            instance =this;
+            instance = this;
         }
         else
         {
@@ -42,12 +42,6 @@ public class QuestScreen : MonoBehaviour
             Destroy(this);
         }
 
-    }
-    private void Start()
-    {
-        //inventory.giveItemEvent += InventoryOfferItem;
-
-        Instantiate(testBaseitem,transform);
     }
 
 

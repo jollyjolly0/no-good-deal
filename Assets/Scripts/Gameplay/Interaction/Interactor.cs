@@ -7,10 +7,13 @@ public class Interactor : MonoBehaviour
     [SerializeField]
     private StringEvent contextChanged;
     [SerializeField]
+    private HeldItemEvent changedHeldItem;
+
+
     private List<BaseInteractable> currentInteractables;
     private BaseInteractable cachedCurrent = null;
-    [SerializeField]
-    private HeldItemEvent changedHeldItem;
+
+
 
     private void Awake()
     {
