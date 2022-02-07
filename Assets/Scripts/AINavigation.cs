@@ -1,8 +1,10 @@
+//#define TEST_QUESTING
+
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-
 
 public class AINavigation : MonoBehaviour
 {
@@ -26,7 +28,9 @@ public class AINavigation : MonoBehaviour
     {
         currentState = AIStates.Returning;
         StartUpdateLoop();
+#if TEST_QUESTING
         StartCoroutine(TestQuesting());
+#endif
     }
 
     private float timeLooking = 0;
