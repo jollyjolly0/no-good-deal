@@ -52,6 +52,26 @@ public class QuestReceiver : MonoBehaviour
     {
         status = QuestStatus.done;
     }
+
+    public void CashInQuest()
+    {
+        if(currentQuest == null) { return; }
+        bool actuallDidQuest = true;
+
+        foreach (var item in currentQuest.rewards)
+        {
+            if (item == null) { continue; }
+            bool b = Inventory.instance.RemoveItem(item);
+            if (b == false)
+            {
+                actuallDidQuest = false;
+            }
+        }
+
+        Inventory.instance.AddItem(currentQuest.goal);
+
+        Debug.Log("they actually didnt do the quest. didnt have all required items");
+    }
     
     private int AssessQuest(Quest q)
     {
@@ -97,6 +117,10 @@ public class QuestReceiver : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Q))
         {
             FinishQuest();
+        }
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            CashInQuest();
         }
     }
 

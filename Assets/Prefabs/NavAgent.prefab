@@ -311,6 +311,39 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7861866137802692323}
     m_Modifications:
+    - target: {fileID: -1837576462355941415, guid: 4ba52bf38009fda4bb7ed3a6b86f9567, type: 3}
+      propertyPath: json
+      value: '{"Options":[],"Parameters":[],"SpeechNodes":[{"Connections":[],"EditorInfo":{"isRoot":true,"xPos":332,"yPos":22},"ID":0,"ParamActions":[],"TMPFontGUID":null,"Text":"quest
+        complete!","parentUIDs":[],"AdvanceDialogueAutomatically":false,"AudioGUID":null,"AutoAdvanceShouldDisplayOption":false,"IconGUID":null,"Name":"carpet","OptionUIDs":null,"SpeechUID":0,"TimeUntilAdvance":0,"Volume":0}]}'
+      objectReference: {fileID: 0}
+    - target: {fileID: -1837576462355941415, guid: 4ba52bf38009fda4bb7ed3a6b86f9567, type: 3}
+      propertyPath: Event.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -1837576462355941415, guid: 4ba52bf38009fda4bb7ed3a6b86f9567, type: 3}
+      propertyPath: Event.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -1837576462355941415, guid: 4ba52bf38009fda4bb7ed3a6b86f9567, type: 3}
+      propertyPath: Event.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 381122011383799538}
+    - target: {fileID: -1837576462355941415, guid: 4ba52bf38009fda4bb7ed3a6b86f9567, type: 3}
+      propertyPath: Event.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -1837576462355941415, guid: 4ba52bf38009fda4bb7ed3a6b86f9567, type: 3}
+      propertyPath: Event.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: CashInQuest
+      objectReference: {fileID: 0}
+    - target: {fileID: -1837576462355941415, guid: 4ba52bf38009fda4bb7ed3a6b86f9567, type: 3}
+      propertyPath: Event.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: QuestReceiver, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: -1837576462355941415, guid: 4ba52bf38009fda4bb7ed3a6b86f9567, type: 3}
+      propertyPath: Event.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 2603042755776969524, guid: 4ba52bf38009fda4bb7ed3a6b86f9567, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -358,6 +391,34 @@ PrefabInstance:
     - target: {fileID: 2916193515544080799, guid: 4ba52bf38009fda4bb7ed3a6b86f9567, type: 3}
       propertyPath: m_Name
       value: dialog_carpet_quest_done
+      objectReference: {fileID: 0}
+    - target: {fileID: 5289641027961116786, guid: 4ba52bf38009fda4bb7ed3a6b86f9567, type: 3}
+      propertyPath: Event.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5289641027961116786, guid: 4ba52bf38009fda4bb7ed3a6b86f9567, type: 3}
+      propertyPath: Event.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5289641027961116786, guid: 4ba52bf38009fda4bb7ed3a6b86f9567, type: 3}
+      propertyPath: Event.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 381122011383799538}
+    - target: {fileID: 5289641027961116786, guid: 4ba52bf38009fda4bb7ed3a6b86f9567, type: 3}
+      propertyPath: Event.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5289641027961116786, guid: 4ba52bf38009fda4bb7ed3a6b86f9567, type: 3}
+      propertyPath: Event.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: CashInQuest
+      objectReference: {fileID: 0}
+    - target: {fileID: 5289641027961116786, guid: 4ba52bf38009fda4bb7ed3a6b86f9567, type: 3}
+      propertyPath: Event.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: QuestReceiver, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5289641027961116786, guid: 4ba52bf38009fda4bb7ed3a6b86f9567, type: 3}
+      propertyPath: Event.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4ba52bf38009fda4bb7ed3a6b86f9567, type: 3}
@@ -422,8 +483,14 @@ PrefabInstance:
       value: dialog_carpet_quest_want
       objectReference: {fileID: 0}
     - target: {fileID: 6139784558941048918, guid: 970ddc64ed13f8a4592f20261fae42e8, type: 3}
+      propertyPath: json
+      value: '{"Options":[{"Connections":[],"EditorInfo":{"isRoot":false,"xPos":207,"yPos":241},"ID":2,"ParamActions":[],"TMPFontGUID":null,"Text":"no","parentUIDs":[0],"SpeechUID":-1},{"Connections":[{"__type":"EditableSpeechConnection:#DialogueEditor","Conditions":[],"NodeUID":4}],"EditorInfo":{"isRoot":false,"xPos":499,"yPos":248},"ID":3,"ParamActions":[],"TMPFontGUID":null,"Text":"yes","parentUIDs":[0],"SpeechUID":-1}],"Parameters":[],"SpeechNodes":[{"Connections":[{"__type":"EditableOptionConnection:#DialogueEditor","Conditions":[],"NodeUID":2},{"__type":"EditableOptionConnection:#DialogueEditor","Conditions":[],"NodeUID":3}],"EditorInfo":{"isRoot":true,"xPos":332,"yPos":22},"ID":0,"ParamActions":[],"TMPFontGUID":null,"Text":"gimme
+        a quest","parentUIDs":[],"AdvanceDialogueAutomatically":false,"AudioGUID":null,"AutoAdvanceShouldDisplayOption":false,"IconGUID":null,"Name":"Carpet","OptionUIDs":null,"SpeechUID":0,"TimeUntilAdvance":0,"Volume":0},{"Connections":[],"EditorInfo":{"isRoot":false,"xPos":513,"yPos":359},"ID":4,"ParamActions":[],"TMPFontGUID":null,"Text":"__DIALOG
+        HIJACKED FOR QUEST UPDATE__","parentUIDs":[3],"AdvanceDialogueAutomatically":false,"AudioGUID":null,"AutoAdvanceShouldDisplayOption":false,"IconGUID":null,"Name":"Carpet","OptionUIDs":null,"SpeechUID":0,"TimeUntilAdvance":0,"Volume":0}]}'
+      objectReference: {fileID: 0}
+    - target: {fileID: 6139784558941048918, guid: 970ddc64ed13f8a4592f20261fae42e8, type: 3}
       propertyPath: Event.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6139784558941048918, guid: 970ddc64ed13f8a4592f20261fae42e8, type: 3}
       propertyPath: Event.m_PersistentCalls.m_Calls.Array.data[0].m_Mode

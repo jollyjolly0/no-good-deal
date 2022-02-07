@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 
 
 public class Inventory : MonoBehaviour,
-    IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerClickHandler
+    IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     const int inventoryWidth = 4;
     const int inventoryHeight = 7;
@@ -20,9 +20,13 @@ public class Inventory : MonoBehaviour,
 
     [SerializeField] private RectTransform bag;
 
+    public static Inventory instance;
+
     #region setup
     private void Awake()
     {
+        if(instance == null) {  instance = this; } else { Destroy(this); }
+
         items = new BaseItem[inventorySize];
         for (int i = 0; i < inventorySize; i++)
         {
@@ -62,14 +66,16 @@ public class Inventory : MonoBehaviour,
         return true;   
     }
 
-    public void RemoveItem(BaseItem item)
+    public bool RemoveItem(BaseItem item)
     {
         int ind = FindIndexOf(item);
 
-        if(ind < 0) { Debug.LogWarning("trying to remove an item that isnt found in the inventory!"); }
+        if(ind < 0) { Debug.LogWarning("trying to remove an item that isnt found in the inventory!"); return false; }
 
         items[ind] = null;
         Destroy(item.gameObject);
+
+        return true;
     }
 
     public void EquipItem(HeldItem item)
@@ -89,6 +95,15 @@ public class Inventory : MonoBehaviour,
     public HeldItem GetCurrentHeldItem()
     {
         return currentHeldItem;
+    }
+
+    public void HandleItemUse(BaseItem b)
+    {
+        if (GameState.IsState(GameState.State.Default))
+        {
+            b.Use();
+        }
+
     }
 
     #endregion interface
@@ -148,9 +163,43 @@ public class Inventory : MonoBehaviour,
     private Vector2 GetLocalPointFromScreenPos(Vector2 p)
     {
         Vector2 pos;
-        bool hit = RectTransformUtility.ScreenPointToLocalPointInRectangle((RectTransform)transform, p, null, out pos);
+        bool hit = RectTransformUtility.ScreenPointToLocalPointInRectangle((RectTransform)bag, p, null, out pos);
         return pos;
     }
+
+    private void SwapEntries(int index1, int index2)
+    {
+        if (index1 < 0 || index1 >= inventorySize) { return; }
+        if (index2 < 0 || index2 >= inventorySize) { return; }
+
+        if (index1 == index2) { return; }
+
+        if (items[index1] == null && items[index2] == null) { return; }
+
+
+        if (items[index1] != null)
+        {
+            items[index1].transform.localPosition = GetPositionFromIndex(index2);
+        }
+
+        if (items[index2] != null)
+        {
+            items[index2].transform.localPosition = GetPositionFromIndex(index1);
+        }
+
+        BaseItem tmp = items[index1];
+
+        items[index1] = items[index2];
+        items[index2] = tmp;
+
+        if(items[index1] == items[index2])
+        {
+            Debug.Log("sawpping same item");
+        }
+
+    }
+
+
 
     #endregion helpers
 
@@ -189,48 +238,7 @@ public class Inventory : MonoBehaviour,
         initialSwapIndex = -1;
     }
     #endregion EventHandlers
-    private void SwapEntries(int index1, int index2)
-    {
-        if(index1 < 0 || index1 >=  inventorySize) { return; }
-        if(index2 < 0 || index2 >=  inventorySize) { return; }
-
-        if(index1 == index2) { return; }
-
-        if(items[index1] == null && items[index2] == null) { return; }
 
 
-        if(items[index1] != null)
-        {
-            items[index1].transform.localPosition = GetPositionFromIndex(index2);
-        }
 
-        if (items[index2] != null)
-        {
-            items[index2].transform.localPosition = GetPositionFromIndex(index1);
-        }
-
-        BaseItem tmp = items[index1];
-
-        items[index1] = items[index2];
-        items[index2] = tmp;
-
-    }
-
-    public void OnPointerClick(PointerEventData eventData)
-    {
-        Debug.Log(GetIndexFromXY(
-                            GetGridPosition(
-                                GetLocalPointFromScreenPos(eventData.position)
-                                )
-                            ));
-    }
-
-    public void HandleItemUse(BaseItem b)
-    {
-        if(GameState.IsState (GameState.State.Default))
-        {
-            b.Use();
-        }
-
-    }
 }
