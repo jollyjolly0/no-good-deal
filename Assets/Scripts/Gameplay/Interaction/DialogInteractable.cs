@@ -8,6 +8,8 @@ public class DialogInteractable : BaseInteractable
     [SerializeField]
     private NPCConversation conversation;
 
+    [SerializeField]
+    private AINavigation myAI;
     private NPCConversation[] converstaions;
     private QuestReceiver questReceiver;
 
@@ -24,6 +26,7 @@ public class DialogInteractable : BaseInteractable
 
     public override void Interact(GameObject actor)
     {
+        DisableAIMovementDuringDialog();
         ConversationManager.Instance.StartConversation(GetConversation());
     }
 
@@ -46,6 +49,16 @@ public class DialogInteractable : BaseInteractable
 
 
         return null;
+    }
+
+    private void DisableAIMovementDuringDialog()
+    {
+        myAI.TalkToAI();
+    }
+
+    private void EnableAIMovementAfterDialog()
+    {
+        myAI.EndTalkToAI();
     }
 
     private NPCConversation TryGetDialogBy(string suffix)

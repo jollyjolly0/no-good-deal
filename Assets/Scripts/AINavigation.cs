@@ -52,6 +52,8 @@ public class AINavigation : MonoBehaviour
 
     private Color debugColor;
 
+    private AIStates lastState;
+
     IEnumerator TestQuesting()
     {
         yield return new WaitForSeconds(5.0f);
@@ -69,6 +71,10 @@ public class AINavigation : MonoBehaviour
     }
     private void UpdateLoop(int updateNum)
     {
+        if(currentState == AIStates.Talking)
+        {
+            return;
+        }
         if(currentState != AIStates.Questing && currentState != AIStates.WaitingToReturn)
         {
             timeInShop += updateInteval;
@@ -189,6 +195,7 @@ public class AINavigation : MonoBehaviour
         Looking,
         WaitingToReturn,
         Returning,
+        Talking,
         Questing
     }
 
@@ -247,5 +254,18 @@ public class AINavigation : MonoBehaviour
         questTime = time;
         MoveToExit();
         currentState = AIStates.Questing;
+    }
+
+    public void TalkToAI()
+    {
+        lastState = currentState;
+        navAgent.isStopped = true;
+        currentState = AIStates.Talking;
+    }
+
+    public void EndTalkToAI()
+    {
+        currentState = lastState;
+        navAgent.isStopped = false;
     }
 }
