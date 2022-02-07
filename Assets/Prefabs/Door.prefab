@@ -94,7 +94,6 @@ MonoBehaviour:
   cameraOriginalVector: {x: 0, y: 100, z: -10}
   cameraDestinationVector: {x: 0, y: 100, z: 1}
   transitionTime: 1
-  myLink: {fileID: 0}
 --- !u!1 &8732081994731592007
 GameObject:
   m_ObjectHideFlags: 0

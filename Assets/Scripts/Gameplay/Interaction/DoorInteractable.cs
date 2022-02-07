@@ -16,7 +16,7 @@ public class DoorInteractable : BaseInteractable
     float transitionStartTime;
     public float transitionTime;
 
-    public GameObject myLink;
+    //public GameObject myLink;
 
     private Movement movementComponent;
 
@@ -32,12 +32,6 @@ public class DoorInteractable : BaseInteractable
 
     public override void Interact(GameObject actor)
     {
-        //myLink.SetActive(true);
-        Component[] components = myLink.GetComponents(typeof(Component));
-        foreach (Component component in components)
-        {
-            Debug.Log($"component: {component.ToString()}");
-        }
         if (actor.name.ToLowerInvariant().Contains("player"))
         {
             PlayerUseDoor(actor);
