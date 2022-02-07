@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.AI;
 
 
-[RequireComponent(typeof(NavMeshAgent))]
 public class AINavigation : MonoBehaviour
 {
     private NavMeshAgent navAgent;
@@ -27,7 +26,7 @@ public class AINavigation : MonoBehaviour
     {
         float shouldWander = Random.Range(0, NavigationManager.instance.curiousityMax);
         ///Make it a little more likely that they might wander right away rather than going straight to the front desk
-        if(shouldWander <= AIScriptable.curiousityLevel * 400)
+        if (shouldWander <= AIScriptable.curiousityLevel * 400)
         {
             Wander();
         }
@@ -40,11 +39,11 @@ public class AINavigation : MonoBehaviour
 
     private float timeLooking = 0;
 
-    private float updateInteval = 1.0f;
+    private float updateInteval = 2.0f;
     IEnumerator UpdateAtLongerFrequency()
     {
+        UpdateLoop(UnityEngine.Random.Range(0,1000));
         yield return new WaitForSeconds(updateInteval);
-        UpdateLoop();
         StartUpdateLoop();
         
     }
@@ -59,9 +58,20 @@ public class AINavigation : MonoBehaviour
     {
         StartCoroutine(UpdateAtLongerFrequency());
     }
-    private void UpdateLoop()
+    private void UpdateLoop(int updateNum)
     {
         timeInShop += updateInteval;
+
+        if (currentState != AIStates.Exiting || currentState != AIStates.Snitching)
+        {
+            float shouldGoToExit = Random.Range(0, AIScriptable.maxTimeInShop);
+            if (shouldGoToExit < timeInShop)
+            {
+                currentState = AIStates.Exiting;
+                MoveToExit();
+            }
+        }
+
 
         switch (currentState)
         {
@@ -112,6 +122,10 @@ public class AINavigation : MonoBehaviour
                 }
                 break;
             case (AIStates.Exiting):
+                if(Vector2.Distance(navAgent.transform.position, NavigationManager.instance.exitPosition) < 1f)
+                {
+                    Destroy(navAgent.gameObject);
+                }
                 debugColor = Color.cyan;
                 break;
             case (AIStates.Snitching):
@@ -122,12 +136,6 @@ public class AINavigation : MonoBehaviour
                 break;
         }
 
-        float shouldGoToExit = Random.Range(0, AIScriptable.maxTimeInShop);
-        if (shouldGoToExit < timeInShop)
-        {
-            currentState = AIStates.Exiting;
-            MoveToExit();
-        }
     }
 
 
@@ -148,6 +156,10 @@ public class AINavigation : MonoBehaviour
 
     private void Wander()
     {
+        if(currentState == AIStates.Exiting)
+        {
+            return;
+        }
         ///Find new point of interest to go to based on proximity
         timeLooking = 0;
         currentPoi = NavigationManager.instance.GetPointOfInterest(transform.position, currentPoi);
@@ -157,6 +169,10 @@ public class AINavigation : MonoBehaviour
 
     private void Snitch()
     {
+        if(currentState == AIStates.Exiting)
+        {
+            return;
+        }
         timeLooking = 0;
         currentState = AIStates.Snitching;
         navAgent.speed = AIScriptable.runSpeed;
@@ -165,6 +181,10 @@ public class AINavigation : MonoBehaviour
 
     private void MoveToFrontDesk()
     {
+        if(currentState == AIStates.Exiting)
+        {
+            return;
+        }
         currentState = AIStates.FrontDesk;
         timeLooking = 0;
         navAgent.SetDestination(NavigationManager.instance.frontDeskPosition);
