@@ -983,6 +983,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AIScriptable: {fileID: 11400000, guid: b1d7819f8e14c5345ab5bd10f3fe17e9, type: 2}
+--- !u!20 &881273659 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 921650813653345751, guid: e1c9f75aef201e54aaaf3de2c1fd939f, type: 3}
+  m_PrefabInstance: {fileID: 592124480}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &884421241
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1575,6 +1580,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1821926951987621626, guid: 5015902a149890c4daf2c8a58fa4e9e2, type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 881273659}
+    - target: {fileID: 1821926952008845245, guid: 5015902a149890c4daf2c8a58fa4e9e2, type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 881273659}
+    - target: {fileID: 1821926952283127948, guid: 5015902a149890c4daf2c8a58fa4e9e2, type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 881273659}
+    - target: {fileID: 6946343550378333116, guid: 5015902a149890c4daf2c8a58fa4e9e2, type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 881273659}
     - target: {fileID: 8235712718823300015, guid: 5015902a149890c4daf2c8a58fa4e9e2, type: 3}
       propertyPath: m_Name
       value: Environment

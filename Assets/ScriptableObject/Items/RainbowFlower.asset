@@ -19,3 +19,5 @@ MonoBehaviour:
   itemImage: {fileID: 21300000, guid: 98546e8b25fedce4c9ddd2917a7eafe9, type: 3}
   questDescription: 'Become a being of pure light so you can traverse rainbows to
     Rainbow Island. Then pick one and bring it back to me. '
+  experience: 25
+  value: 100

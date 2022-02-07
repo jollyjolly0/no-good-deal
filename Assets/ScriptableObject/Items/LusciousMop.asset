@@ -18,3 +18,5 @@ MonoBehaviour:
   itemImage: {fileID: 21300000, guid: c38feea3db746f844b885a26cdaa6b71, type: 3}
   questDescription: Some bitch-ass witch has been using this mop as a broomstick.
     That's fucked up, yo! Get that thing back for me!
+  experience: 5
+  value: 30

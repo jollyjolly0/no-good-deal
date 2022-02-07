@@ -55,6 +55,36 @@ public class QuestReceiver : MonoBehaviour
     
     private int AssessQuest(Quest q)
     {
+        int offer = q.goal.itemScriptableObject.experience;
+        foreach (BaseItem item in q.rewards)
+        {
+            if (null != item)
+            {
+                offer += item.itemScriptableObject.value;
+            }
+        }
+        float ratio = (float)offer / (float)q.goal.itemScriptableObject.value;
+
+        if(ratio<.5)
+        {
+            return 0;
+        }
+        else if (ratio < .7)
+        {
+            return 1;
+        }
+        else if (ratio < 1.2)
+        {
+            return 2;
+        }
+        else if(ratio < 1.5)
+        {
+            return 3;
+        }
+        else
+        {
+            return 4;
+        }
         return Random.Range(0,5);
     }
 
