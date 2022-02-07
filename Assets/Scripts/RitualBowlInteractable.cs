@@ -12,7 +12,7 @@ public class RitualBowlInteractable : BaseInteractable
 
     public override string GetActionName()
     {
-        return "FillRitualBowl";
+        return "Fill Bowl";
     }
     public override void Interact(GameObject actor)
     {
