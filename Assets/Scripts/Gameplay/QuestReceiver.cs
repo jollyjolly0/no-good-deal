@@ -45,6 +45,12 @@ public class QuestReceiver : MonoBehaviour
     {
         currentQuest = q;
         DialogueEditor.ConversationManager.Instance.EndConversation();
+        DialogInteractable myDialog = GetComponent<DialogInteractable>();
+        if (myDialog)
+        {
+            myDialog.myAI.EndTalkToAI();
+            myDialog.myAI.SetQuestTime(5,FinishQuest);
+        }
         status = QuestStatus.inprogress;
     }
 

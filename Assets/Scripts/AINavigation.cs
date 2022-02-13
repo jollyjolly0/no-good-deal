@@ -1,6 +1,7 @@
 //#define TEST_QUESTING
 
 
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -57,7 +58,7 @@ public class AINavigation : MonoBehaviour
     IEnumerator TestQuesting()
     {
         yield return new WaitForSeconds(5.0f);
-        SetQuestTime(30);
+        SetQuestTime(30,null);
     }
 
     private void Update()
@@ -82,7 +83,7 @@ public class AINavigation : MonoBehaviour
 
         if (currentState != AIStates.Exiting || currentState != AIStates.Snitching || currentState != AIStates.Questing)
         {
-            float shouldGoToExit = Random.Range(0, AIScriptable.maxTimeInShop);
+            float shouldGoToExit = UnityEngine.Random.Range(0, AIScriptable.maxTimeInShop);
             if (shouldGoToExit < timeInShop)
             {
                 currentState = AIStates.Exiting;
@@ -100,7 +101,7 @@ public class AINavigation : MonoBehaviour
                 {
 
                     ///Chance to snitch
-                    float shouldSnitch = Random.Range(0, NavigationManager.instance.narcMax);
+                    float shouldSnitch = UnityEngine.Random.Range(0, NavigationManager.instance.narcMax);
                     if(shouldSnitch < AIScriptable.snitchLevel * timeLooking)
                     {
                         ///Snitch
@@ -109,8 +110,8 @@ public class AINavigation : MonoBehaviour
                     }
                 }
 
-                float shouldWander = Random.Range(0, NavigationManager.instance.curiousityMax);
-                float shouldGoToFrontDesk = Random.Range(0, NavigationManager.instance.frontDeskWander);
+                float shouldWander = UnityEngine.Random.Range(0, NavigationManager.instance.curiousityMax);
+                float shouldGoToFrontDesk = UnityEngine.Random.Range(0, NavigationManager.instance.frontDeskWander);
 
                 if(shouldWander <= AIScriptable.curiousityLevel * timeLooking)
                 {
@@ -133,7 +134,7 @@ public class AINavigation : MonoBehaviour
             case (AIStates.FrontDesk):
                 debugColor = Color.red;
                 timeLooking += updateInteval;
-                shouldWander = Random.Range(0, NavigationManager.instance.curiousityMax);
+                shouldWander = UnityEngine.Random.Range(0, NavigationManager.instance.curiousityMax);
                 if(shouldWander <= AIScriptable.curiousityLevel * timeLooking)
                 {
                     Wander();
@@ -154,14 +155,14 @@ public class AINavigation : MonoBehaviour
                 break;
             case (AIStates.WaitingToReturn):
                 waitingToReturnTime += updateInteval;
-                float shouldReturn = Random.Range(0, AIScriptable.maxTimeWaitingToReturn);
+                float shouldReturn = UnityEngine.Random.Range(0, AIScriptable.maxTimeWaitingToReturn);
                 if(shouldReturn > waitingToReturnTime)
                 {
                     currentState = AIStates.Returning;
                 }
                 break;
             case (AIStates.Returning):
-                shouldWander = Random.Range(0, NavigationManager.instance.curiousityMax);
+                shouldWander = UnityEngine.Random.Range(0, NavigationManager.instance.curiousityMax);
                 ///Make it a little more likely that they might wander right away rather than going straight to the front desk
                 if (shouldWander <= AIScriptable.curiousityLevel * 400)
                 {
@@ -177,6 +178,7 @@ public class AINavigation : MonoBehaviour
                 timeQuesting += updateInteval;
                 if(timeQuesting >= questTime)
                 {
+                    onQuestComplete?.Invoke();
                     currentState = AIStates.Returning;
                 }
                 break;
@@ -248,11 +250,13 @@ public class AINavigation : MonoBehaviour
         navAgent.SetDestination(NavigationManager.instance.exitPosition);
     }
 
-    public void SetQuestTime(float time)
+    private Action onQuestComplete;
+    public void SetQuestTime(float time, Action onQuestComplete)
     {
         timeQuesting = 0;
         questTime = time;
         MoveToExit();
+        this.onQuestComplete = onQuestComplete;
         currentState = AIStates.Questing;
     }
 

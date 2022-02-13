@@ -8,8 +8,7 @@ public class DialogInteractable : BaseInteractable
     [SerializeField]
     private NPCConversation conversation;
 
-    [SerializeField]
-    private AINavigation myAI;
+    public AINavigation myAI;
     private NPCConversation[] converstaions;
     private QuestReceiver questReceiver;
 
